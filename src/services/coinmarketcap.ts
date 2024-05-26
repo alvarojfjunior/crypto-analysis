@@ -4,7 +4,7 @@ import axios from "axios"
 
 export const getMarketData = async () => {
     try {
-        const { data } = axios.get('https://www.blockchaincenter.net/en/altcoin-season-index/')
+        const { data }: any = axios.get('https://www.blockchaincenter.net/en/altcoin-season-index/')
 
         console.log(data)
     } catch (error) {
