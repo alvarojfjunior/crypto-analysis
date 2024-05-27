@@ -24,7 +24,7 @@ async function getSiteData(url: string) {
 export async function GET(request: Request) {
   const siteHTML = await getSiteData('https://www.blockchaincenter.net/en/bitcoin-rainbow-chart/')
   const $ = cheerio.load(siteHTML)
-  const rainbowchart = $('#rainbowchart').first().toString()
+  const rainbowchart = $('#chartdiv').find("svg").first().toString()
   console.log(rainbowchart)
   return NextResponse.json({ rainbowchart })
 }

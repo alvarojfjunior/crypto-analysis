@@ -16,7 +16,7 @@ async function getSiteData(url: string) {
 
 
 export async function GET(request: Request) {
-  const siteData = await getSiteData('https://coinmarketcap.com/charts/')
+  const siteData = await getSiteData('https://coinmarketcap.com/')
   const $ = cheerio.load(siteData)
 
   // Market Cap
@@ -35,5 +35,10 @@ export async function GET(request: Request) {
   vol24h.dir = vol24hEl.toString().includes('color-positive') ? 'up' : 'down'
 
 
-  return NextResponse.json({ marketCap, vol24h })
+  // Fear and Greed Index
+  const fearAndGreedIndex = $('div:contains("Fear & Greed Index")').text()
+  
+
+
+  return NextResponse.json({ marketCap, vol24h, fearAndGreedIndex })
 }
