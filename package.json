@@ -26,6 +26,7 @@
     "react-ts-tradingview-widgets": "^1.2.5"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.10.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

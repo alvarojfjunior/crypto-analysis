@@ -4,9 +4,9 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { Flex, Image, Stack } from "@chakra-ui/react";
 import {
-  CryptoCoinsHeatmap,
+  AdvancedRealTimeChart,
+  SymbolOverview,
   TechnicalAnalysis,
-  MarketOverview,
 } from "react-ts-tradingview-widgets";
 
 export default function Home() {
@@ -14,6 +14,45 @@ export default function Home() {
     <main>
       <NavBar />
       <Stack>
+        <SymbolOverview
+          height={500}
+          symbols={[
+            ["BTC/USD", "BTCUSD"],
+            ["Mark. Cap. (All)", "TOTAL"],
+            ["BTC Dominance (Mar. Cap.)", "BTC.D"],
+          ]}
+          chartType="line"
+          locale="br"
+          scaleMode="Percentage"
+          showVolume
+          gridLineColor="#333"
+          width={"100%"}
+          scalePosition="left"
+          dateFormat="dd/MM/yy"
+          colorTheme="dark"
+          copyrightStyles={{ parent: { display: "none" } }}
+        />
+
+        <AdvancedRealTimeChart
+          width={"100%"}
+          theme="dark"
+          symbol="BTCUSD"
+          style="3"
+          hide_side_toolbar
+          hide_legend
+          locale="br"
+          range="6M"
+          timezone="America/Sao_Paulo"
+          copyrightStyles={{ parent: { display: "none" } }}
+          disabled_features={["chart_zoom"]}
+        />
+
+        <Image
+          src="https://br.tradingview.com/i/df57YEkg/"
+          alt="Rainbow Chart"
+          width="100%"
+        />
+
         <Flex>
           <TechnicalAnalysis
             colorTheme="dark"
@@ -47,19 +86,6 @@ export default function Home() {
             />
           </div>
         </Flex>
-
-        <Image
-          src="https://br.tradingview.com/i/df57YEkg/"
-          alt="Rainbow Chart"
-          width="50%"
-        />
-        <CryptoCoinsHeatmap
-          copyrightStyles={{ parent: { display: "none" } }}
-          colorTheme="dark"
-          hasTopBar={false}
-          height={500}
-          isZoomEnabled={false}
-        />
       </Stack>
       <Footer />
     </main>

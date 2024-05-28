@@ -1,19 +1,6 @@
-import axios from 'axios'
 import * as cheerio from 'cheerio';
 import { NextResponse } from 'next/server'
-
-
-async function getSiteData(url: string) {
-  const { data } = await axios.request({
-    method: "GET",
-    url,
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
-    }
-  })
-  return data
-}
-
+import { getSiteData } from '../../helpers/webScraping';
 
 export async function GET(request: Request) {
   const siteData = await getSiteData('https://coinmarketcap.com/')
@@ -35,10 +22,5 @@ export async function GET(request: Request) {
   vol24h.dir = vol24hEl.toString().includes('color-positive') ? 'up' : 'down'
 
 
-  // Fear and Greed Index
-  const fearAndGreedIndex = $('div:contains("Fear & Greed Index")').text()
-  
-
-
-  return NextResponse.json({ marketCap, vol24h, fearAndGreedIndex })
+  return NextResponse.json({ marketCap, vol24h })
 }

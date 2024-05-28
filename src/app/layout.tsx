@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ChakraProvider } from "@chakra-ui/react";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Crypto Market Analysis",
